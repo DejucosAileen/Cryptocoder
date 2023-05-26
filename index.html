@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Caesar Cipher</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <h1>Cryptocoder</h1>
+  <form id="cipherForm">
+
+    <h2><label for="plainText">Plain Text:</label>
+      <textarea id="plainText" placeholder="Enter your text"></textarea></h2>
+
+   <h3><label for="key">Key:</label>
+    <input type="number" id="shift" placeholder="Enter the key value"></h3>
+  <h4>
+   <button type="button" onclick="encrypt()">Encrypt</button>
+      <button type="button" onclick="decrypt()">Decrypt</button>
+    </form>
+  </h4>
+
+  <div id="result">
+    <h5>Result:</h5>
+   <h6><p id="resultText"></p></h6>
+  <h4><button type="button" onclick="download('result.txt')">Download</button>
+  </div></h4> 
+
+  <script>
+    // Function to encrypt text using Caesar cipher  // 
+    function encrypt() {
+      var plainText = document.getElementById("plainText").value;
+      var shift = parseInt(document.getElementById("shift").value);
+      
+      var encryptedText = "";
+      for (var i = 0; i < plainText.length; i++) {
+        var charCode = plainText.charCodeAt(i);
+        if (charCode >= 65 && charCode <= 90) {
+          encryptedText += String.fromCharCode(((charCode - 65 + shift) % 26) + 65);
+        } else if (charCode >= 97 && charCode <= 122) {
+          encryptedText += String.fromCharCode(((charCode - 97 + shift) % 26) + 97);
+        } else {
+          encryptedText += plainText.charAt(i);
+        }
+      }
+      
+      document.getElementById("resultText").textContent = encryptedText;
+    }
+
+    // Function to decrypt text using Caesar cipher
+    function decrypt() {
+      var encryptedText = document.getElementById("resultText").textContent;
+      var shift = parseInt(document.getElementById("shift").value);
+
+      var decryptedText = "";
+      for (var i = 0; i < encryptedText.length; i++) {
+        var charCode = encryptedText.charCodeAt(i);
+        if (charCode >= 65 && charCode <= 90) {
+          decryptedText += String.fromCharCode(((charCode - 65 - shift + 26) % 26) + 65);
+        } else if (charCode >= 97 && charCode <= 122) {
+          decryptedText += String.fromCharCode(((charCode - 97 - shift + 26) % 26) + 97);
+        } else {
+          decryptedText += encryptedText.charAt(i);
+        }
+      }
+
+      document.getElementById("resultText").textContent = decryptedText;
+    }
+
+    // Function to download text as a file
+    function download(filename) {
+      var element = document.createElement("a");
+      element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(document.getElementById("resultText").textContent));
+      element.setAttribute("download", filename);
+      element.style.display = "none";
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    }
+  </script>
+</body>
+</html>

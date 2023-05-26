@@ -1,0 +1,42 @@
+body {
+	margin: 5;
+	background:#2a648b;
+
+}
+h1
+{
+    font-weight:600;
+    text-align:center;
+    font-size:5.3rem;
+}
+h2
+{
+    text-align:center;
+    font-size:1.5rem;
+}
+h3
+{
+    text-align:center;
+    font-size:1.5rem;
+}
+h4
+{
+    text-align:center;
+}
+button
+{
+    text-align:center;
+    background-color: #aaf9ff;
+}
+h5
+{
+    text-align:center;
+    font-size:1.5rem;
+}
+h6
+{
+    text-align:center;
+    font-size:1.2rem;
+    font-family: Times New Roman;
+    color: rgb(224, 255, 139);
+}
